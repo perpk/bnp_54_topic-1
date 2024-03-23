@@ -1,0 +1,30 @@
+library("stringi")
+set.seed(1)
+stringi::stri_rand_strings(1, 2000, '[ACGT]');
+
+pos_1 = c(rep("A", 8));
+pos_2 = c("G", "C", rep("G", 6));
+pos_3 = c(rep("A", 8));
+pos_4 = c(rep("A", 8));
+pos_5 = c(rep("C", 3), "G", rep("C", 4));
+pos_6 = c(rep("A", 5), "T", "A", "A");
+
+
+halfSites <- cbind(pos_1, pos_2, pos_3, pos_4, pos_5, pos_6);
+halfSites_df <- as.data.frame(halfSites);
+pos2occ <- table(factor(halfSites_df$pos_2, levels=c("A", "C", "G", "T")));
+pos2tab <- prop.table(pos2occ)
+
+barplot(pos2tab)
+
+barplot(table(halfSites))
+
+##==============================================================================
+
+m = c("car", "car", "bus", "metro", "metro", "car", "metro", "metro",
+       "foot", "car", "foot", "bus", "bus", "metro", "metro", "car",
+       "car", "car", "metro", "car");
+
+g = c(rep("M", 8), rep("F", 12));
+
+table(m, g)
